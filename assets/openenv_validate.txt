@@ -1,0 +1,47 @@
+$ python -c "import yaml; m = yaml.safe_load(open('openenv.yaml')); print('OK openenv.yaml is valid'); print('name:', m['name']); print('tasks:', [t['id'] for t in m['tasks']])"
+OK openenv.yaml is valid
+name: whispers
+tasks: ['t1', 't2', 't3', 't4', 't5', 't6']
+
+$ python -m pytest tests/ -v
+============================= test session starts =============================
+collected 17 items
+
+tests/test_smoke.py::test_reset_returns_observation[t1] PASSED           [  5%]
+tests/test_smoke.py::test_reset_returns_observation[t2] PASSED           [ 11%]
+tests/test_smoke.py::test_reset_returns_observation[t3] PASSED           [ 17%]
+tests/test_smoke.py::test_reset_returns_observation[t4] PASSED           [ 23%]
+tests/test_smoke.py::test_reset_returns_observation[t5] PASSED           [ 29%]
+tests/test_smoke.py::test_reset_returns_observation[t6] PASSED           [ 35%]
+tests/test_smoke.py::test_reset_is_reproducible PASSED                   [ 41%]
+tests/test_smoke.py::test_step_returns_quadruple PASSED                  [ 47%]
+tests/test_smoke.py::test_publish_terminates_episode PASSED              [ 52%]
+tests/test_smoke.py::test_grader_returns_floats_in_unit_interval[t1] PASSED [ 58%]
+tests/test_smoke.py::test_grader_returns_floats_in_unit_interval[t2] PASSED [ 64%]
+tests/test_smoke.py::test_grader_returns_floats_in_unit_interval[t3] PASSED [ 70%]
+tests/test_smoke.py::test_grader_returns_floats_in_unit_interval[t4] PASSED [ 76%]
+tests/test_smoke.py::test_grader_returns_floats_in_unit_interval[t5] PASSED [ 82%]
+tests/test_smoke.py::test_grader_returns_floats_in_unit_interval[t6] PASSED [ 88%]
+tests/test_smoke.py::test_reserved_tool_names_rejected PASSED            [ 94%]
+tests/test_smoke.py::test_step_after_done_raises PASSED                  [100%]
+
+============================= 17 passed in 0.94s ==============================
+
+$ python -m whispers.server &  # in background
+$ curl -s http://127.0.0.1:7860/
+{"status":"ok","name":"whispers","version":"0.1.0","openenv_version":"0.2.3"}
+
+$ curl -s -X POST http://127.0.0.1:7860/reset -H "Content-Type: application/json" -d '{"task_id":"t1","seed":0}'
+{"role":"editor","agent_id":2,"inbox":[],"public_feed":[],"private_facts":[], ...}
+
+$ curl -s -X POST http://127.0.0.1:7860/step -H "Content-Type: application/json" -d '{"action":{"tool":"wait"}}'
+{"observation":{...}, "reward":{"value":0.0,...}, "done":false, "info":{...}}
+
+$ curl -s http://127.0.0.1:7860/state
+{"task_id":"t1","seed":0,"step":1, ...}
+
+$ curl -s -X POST http://127.0.0.1:7860/grade
+{"truth_alignment":1.0,"calibration":1.0,"adversary_detection":1.0,
+ "coalition_bonus":0.0,"cascade_penalty":0.0,"efficiency":0.75,"value":0.975}
+
+OK All OpenEnv submission-checklist items D1-D6 verified locally.

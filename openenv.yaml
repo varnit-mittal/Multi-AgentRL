@@ -1,0 +1,128 @@
+# OpenEnv Manifest for Whispers
+name: whispers
+version: 0.1.0
+openenv_version: "0.2.3"
+spec_version: 1
+description: >
+  Multi-agent information-triage environment. An LLM learns to relay,
+  verify, and publish facts inside a noisy graph of witnesses, relays,
+  editors, and hidden adversaries. Designed to teach source-credibility
+  tracking, calibrated confidence, anti-cascade restraint, and ad-hoc
+  verification-coalition formation.
+
+# Pydantic types (importable)
+observation_type: whispers.models.WhispersObservation
+action_type: whispers.models.WhispersAction
+reward_type: whispers.models.WhispersReward
+state_type: whispers.models.WhispersState
+
+# Client wrapper used from training / inference
+client:
+  class_name: WhispersClient
+  module: whispers.client
+
+# Observation / action descriptions for human readers
+observation_space:
+  description: >
+    The agent's local view: its assigned role and id, this round's inbox,
+    the public broadcast feed, any private facts (only witnesses see these),
+    its network neighbours, remaining fact_check budget, and the list of
+    legal MCP tools that can be called this turn.
+  fields:
+    - {name: role, type: "Literal[witness,relay,editor,adversary]"}
+    - {name: agent_id, type: int}
+    - {name: inbox, type: "list[Message]"}
+    - {name: public_feed, type: "list[Message]"}
+    - {name: private_facts, type: "list[str]"}
+    - {name: network_neighbors, type: "list[int]"}
+    - {name: fact_check_budget, type: int}
+    - {name: step, type: int}
+    - {name: max_steps, type: int}
+    - {name: legal_tools, type: "list[str]"}
+
+action_space:
+  description: >
+    A discriminated-union action whose `tool` field selects one of seven
+    MCP-style tools. Optional fields are only consumed by the relevant tool.
+  tools:
+    - {name: send_message,    description: "Direct message to a single neighbour with content + claimed source + confidence"}
+    - {name: broadcast,       description: "Public broadcast visible to every agent next turn"}
+    - {name: fact_check,      description: "Spend one budgeted query against the oracle on a claim string"}
+    - {name: request_verify,  description: "Ask a peer to confirm or deny a specific claim (coalition primitive)"}
+    - {name: accuse,          description: "Publicly accuse target_id of being adversarial"}
+    - {name: publish,         description: "Editor-only: emit final structured report; ends the episode"}
+    - {name: wait,            description: "Pass this turn"}
+
+# Default constraints
+max_episode_steps: 24
+
+# Tasks
+tasks:
+  - id: t1
+    name: "Single Relay"
+    difficulty: easy
+    description: "3 nodes, 1 witness > 1 relay > 1 editor (you), no adversary, low noise. Just relay information accurately."
+    max_steps: 8
+    grader:
+      module: whispers.tasks.single_relay
+      function: grade
+  - id: t2
+    name: "Triangulate"
+    difficulty: easy
+    description: "4 nodes, 2 witnesses with overlapping noisy observations, 1 editor (you) must combine into a calibrated report."
+    max_steps: 12
+    grader:
+      module: whispers.tasks.triangulate
+      function: grade
+  - id: t3
+    name: "Spot the Liar"
+    difficulty: medium
+    description: "4 nodes; 2 witnesses, 1 of them adversarial with a fully fabricated event. Identify based on internal consistency."
+    max_steps: 14
+    grader:
+      module: whispers.tasks.spot_the_liar
+      function: grade
+  - id: t4
+    name: "Cascade Chain"
+    difficulty: medium
+    description: "5 nodes in a line; you are the middle relay; one upstream node is adversarial. Resist forwarding the lie with high confidence."
+    max_steps: 18
+    grader:
+      module: whispers.tasks.cascade_chain
+      function: grade
+  - id: t5
+    name: "Coalition Under Pressure"
+    difficulty: hard
+    description: "6 nodes, 2 colluding adversaries with consistent lies, 1 honest witness; you are the editor with a 2-call fact-check budget. Form a verification coalition before publishing."
+    max_steps: 24
+    grader:
+      module: whispers.tasks.coalition_under_pressure
+      function: grade
+  - id: t6
+    name: "Calibrated Brief"
+    difficulty: hard
+    description: "Multi-field event under partial collusion; calibration of confidences dominates the score (Brier + ECE)."
+    max_steps: 24
+    grader:
+      module: whispers.tasks.calibrated_brief
+      function: grade
+
+# Scoring
+scoring:
+  reward_range: [0.0, 1.0]
+  success_threshold: 0.6
+  score_formula: "0.40*truth + 0.20*calibration + 0.15*adversary_detect + 0.10*coalition + 0.10*efficiency - 0.15*cascade_penalty"
+
+# Baseline agent for scoring reproduction
+agent:
+  baseline: inference.py
+  type: llm-protagonist
+  notes: "OpenAI-client baseline that calls a hosted LLM via API_BASE_URL/MODEL_NAME and tool-parses the response."
+
+# Infra constraints
+constraints:
+  max_runtime_seconds: 300
+  max_memory_gb: 4
+  max_vcpu: 2
+
+default_image: whispers:latest

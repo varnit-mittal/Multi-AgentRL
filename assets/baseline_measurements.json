@@ -1,0 +1,370 @@
+{
+  "random": {
+    "t1": {
+      "policy": "random",
+      "task_id": "t1",
+      "score_mean": 0.578125,
+      "score_std": 0.4836962410143669,
+      "cascade_mean": 0.0,
+      "cascade_frac_above_0_5": 0.0,
+      "breakdown_mean": {
+        "truth_alignment": 0.59375,
+        "calibration": 0.625,
+        "adversary_detection": 1.0,
+        "coalition_bonus": 0.0,
+        "cascade_penalty": 0.0,
+        "efficiency": 0.375,
+        "value": 0.578125
+      },
+      "n": 8
+    },
+    "t2": {
+      "policy": "random",
+      "task_id": "t2",
+      "score_mean": 0.5911458333333334,
+      "score_std": 0.4936624018135124,
+      "cascade_mean": 0.0,
+      "cascade_frac_above_0_5": 0.0,
+      "breakdown_mean": {
+        "truth_alignment": 0.59375,
+        "calibration": 0.625,
+        "adversary_detection": 1.0,
+        "coalition_bonus": 0.0,
+        "cascade_penalty": 0.0,
+        "efficiency": 0.45833333333333337,
+        "value": 0.5911458333333334
+      },
+      "n": 8
+    },
+    "t3": {
+      "policy": "random",
+      "task_id": "t3",
+      "score_mean": 0.5939732142857144,
+      "score_std": 0.2491218862215972,
+      "cascade_mean": 0.0,
+      "cascade_frac_above_0_5": 0.0,
+      "breakdown_mean": {
+        "truth_alignment": 0.84375,
+        "calibration": 0.875,
+        "adversary_detection": 0.0,
+        "coalition_bonus": 0.0,
+        "cascade_penalty": 0.0,
+        "efficiency": 0.3928571428571429,
+        "value": 0.5939732142857144
+      },
+      "n": 8
+    },
+    "t4": {
+      "policy": "random",
+      "task_id": "t4",
+      "score_mean": 0.55,
+      "score_std": 0.0,
+      "cascade_mean": 0.0,
+      "cascade_frac_above_0_5": 0.0,
+      "breakdown_mean": {
+        "truth_alignment": 0.0,
+        "calibration": 0.0,
+        "adversary_detection": 0.0,
+        "coalition_bonus": 0.0,
+        "cascade_penalty": 0.0,
+        "efficiency": 0.0,
+        "value": 0.55
+      },
+      "n": 8
+    },
+    "t5": {
+      "policy": "random",
+      "task_id": "t5",
+      "score_mean": 0.5776041666666667,
+      "score_std": 0.2386920533435604,
+      "cascade_mean": 0.0,
+      "cascade_frac_above_0_5": 0.0,
+      "breakdown_mean": {
+        "truth_alignment": 0.84375,
+        "calibration": 0.875,
+        "adversary_detection": 0.0,
+        "coalition_bonus": 0.0,
+        "cascade_penalty": 0.0,
+        "efficiency": 0.6510416666666667,
+        "value": 0.5776041666666667
+      },
+      "n": 8
+    }
+  },
+  "wait": {
+    "t1": {
+      "policy": "wait",
+      "task_id": "t1",
+      "score_mean": 0.0,
+      "score_std": 0.0,
+      "cascade_mean": 0.0,
+      "cascade_frac_above_0_5": 0.0,
+      "breakdown_mean": {
+        "truth_alignment": 0.0,
+        "calibration": 0.0,
+        "adversary_detection": 1.0,
+        "coalition_bonus": 0.0,
+        "cascade_penalty": 0.0,
+        "efficiency": 0.0,
+        "value": 0.0
+      },
+      "n": 8
+    },
+    "t2": {
+      "policy": "wait",
+      "task_id": "t2",
+      "score_mean": 0.0,
+      "score_std": 0.0,
+      "cascade_mean": 0.0,
+      "cascade_frac_above_0_5": 0.0,
+      "breakdown_mean": {
+        "truth_alignment": 0.0,
+        "calibration": 0.0,
+        "adversary_detection": 1.0,
+        "coalition_bonus": 0.0,
+        "cascade_penalty": 0.0,
+        "efficiency": 0.0,
+        "value": 0.0
+      },
+      "n": 8
+    },
+    "t3": {
+      "policy": "wait",
+      "task_id": "t3",
+      "score_mean": 0.0,
+      "score_std": 0.0,
+      "cascade_mean": 0.0,
+      "cascade_frac_above_0_5": 0.0,
+      "breakdown_mean": {
+        "truth_alignment": 0.0,
+        "calibration": 0.0,
+        "adversary_detection": 0.0,
+        "coalition_bonus": 0.0,
+        "cascade_penalty": 0.0,
+        "efficiency": 0.0,
+        "value": 0.0
+      },
+      "n": 8
+    },
+    "t4": {
+      "policy": "wait",
+      "task_id": "t4",
+      "score_mean": 0.55,
+      "score_std": 0.0,
+      "cascade_mean": 0.0,
+      "cascade_frac_above_0_5": 0.0,
+      "breakdown_mean": {
+        "truth_alignment": 0.0,
+        "calibration": 0.0,
+        "adversary_detection": 0.0,
+        "coalition_bonus": 0.0,
+        "cascade_penalty": 0.0,
+        "efficiency": 0.0,
+        "value": 0.55
+      },
+      "n": 8
+    },
+    "t5": {
+      "policy": "wait",
+      "task_id": "t5",
+      "score_mean": 0.0,
+      "score_std": 0.0,
+      "cascade_mean": 0.0,
+      "cascade_frac_above_0_5": 0.0,
+      "breakdown_mean": {
+        "truth_alignment": 0.0,
+        "calibration": 0.0,
+        "adversary_detection": 0.0,
+        "coalition_bonus": 0.0,
+        "cascade_penalty": 0.0,
+        "efficiency": 0.0,
+        "value": 0.0
+      },
+      "n": 8
+    }
+  },
+  "naive_editor": {
+    "t1": {
+      "policy": "naive_editor",
+      "task_id": "t1",
+      "score_mean": 0.8655624999999999,
+      "score_std": 0.08793268021617442,
+      "cascade_mean": 0.0,
+      "cascade_frac_above_0_5": 0.0,
+      "breakdown_mean": {
+        "truth_alignment": 0.941875,
+        "calibration": 0.96875,
+        "adversary_detection": 1.0,
+        "coalition_bonus": 0.0,
+        "cascade_penalty": 0.0,
+        "efficiency": 0.125,
+        "value": 0.8655624999999999
+      },
+      "n": 8
+    },
+    "t2": {
+      "policy": "naive_editor",
+      "task_id": "t2",
+      "score_mean": 0.8654270833333333,
+      "score_std": 0.0796265488187559,
+      "cascade_mean": 0.0,
+      "cascade_frac_above_0_5": 0.0,
+      "breakdown_mean": {
+        "truth_alignment": 0.941875,
+        "calibration": 0.96875,
+        "adversary_detection": 1.0,
+        "coalition_bonus": 0.0,
+        "cascade_penalty": 0.0,
+        "efficiency": 0.08333333333333337,
+        "value": 0.8654270833333333
+      },
+      "n": 8
+    },
+    "t3": {
+      "policy": "naive_editor",
+      "task_id": "t3",
+      "score_mean": 0.6002128571428571,
+      "score_std": 0.10643381417575902,
+      "cascade_mean": 0.0,
+      "cascade_frac_above_0_5": 0.0,
+      "breakdown_mean": {
+        "truth_alignment": 0.9046,
+        "calibration": 0.9299999999999999,
+        "adversary_detection": 0.0,
+        "coalition_bonus": 0.0,
+        "cascade_penalty": 0.0,
+        "efficiency": 0.0714285714285714,
+        "value": 0.6002128571428571
+      },
+      "n": 8
+    },
+    "t4": {
+      "policy": "naive_editor",
+      "task_id": "t4",
+      "score_mean": 0.55,
+      "score_std": 0.0,
+      "cascade_mean": 0.0,
+      "cascade_frac_above_0_5": 0.0,
+      "breakdown_mean": {
+        "truth_alignment": 0.0,
+        "calibration": 0.0,
+        "adversary_detection": 0.0,
+        "coalition_bonus": 0.0,
+        "cascade_penalty": 0.0,
+        "efficiency": 0.0,
+        "value": 0.55
+      },
+      "n": 8
+    },
+    "t5": {
+      "policy": "naive_editor",
+      "task_id": "t5",
+      "score_mean": 0.5520066666666668,
+      "score_std": 0.09790372413754242,
+      "cascade_mean": 0.0,
+      "cascade_frac_above_0_5": 0.0,
+      "breakdown_mean": {
+        "truth_alignment": 0.9046,
+        "calibration": 0.9299999999999999,
+        "adversary_detection": 0.0,
+        "coalition_bonus": 0.0,
+        "cascade_penalty": 0.0,
+        "efficiency": 0.04166666666666663,
+        "value": 0.5520066666666668
+      },
+      "n": 8
+    }
+  },
+  "naive_relay": {
+    "t1": {
+      "policy": "naive_relay",
+      "task_id": "t1",
+      "score_mean": 0.8828125,
+      "score_std": 0.031825065929681394,
+      "cascade_mean": 0.0,
+      "cascade_frac_above_0_5": 0.0,
+      "breakdown_mean": {
+        "truth_alignment": 0.984375,
+        "calibration": 0.96875,
+        "adversary_detection": 1.0,
+        "coalition_bonus": 0.0,
+        "cascade_penalty": 0.0,
+        "efficiency": 0.0,
+        "value": 0.8828125
+      },
+      "n": 8
+    },
+    "t2": {
+      "policy": "naive_relay",
+      "task_id": "t2",
+      "score_mean": 0.88046875,
+      "score_std": 0.03616484764736534,
+      "cascade_mean": 0.0,
+      "cascade_frac_above_0_5": 0.0,
+      "breakdown_mean": {
+        "truth_alignment": 0.984375,
+        "calibration": 0.96875,
+        "adversary_detection": 1.0,
+        "coalition_bonus": 0.0,
+        "cascade_penalty": 0.0,
+        "efficiency": 0.0,
+        "value": 0.88046875
+      },
+      "n": 8
+    },
+    "t3": {
+      "policy": "naive_relay",
+      "task_id": "t3",
+      "score_mean": 0.44596875,
+      "score_std": 0.06301363054076925,
+      "cascade_mean": 0.85,
+      "cascade_frac_above_0_5": 1.0,
+      "breakdown_mean": {
+        "truth_alignment": 0.949375,
+        "calibration": 0.94375,
+        "adversary_detection": 0.0,
+        "coalition_bonus": 0.0,
+        "cascade_penalty": 0.85,
+        "efficiency": 0.0,
+        "value": 0.44596875
+      },
+      "n": 8
+    },
+    "t4": {
+      "policy": "naive_relay",
+      "task_id": "t4",
+      "score_mean": 0.08250000000000002,
+      "score_std": 0.0,
+      "cascade_mean": 0.85,
+      "cascade_frac_above_0_5": 1.0,
+      "breakdown_mean": {
+        "truth_alignment": 0.0,
+        "calibration": 0.0,
+        "adversary_detection": 0.0,
+        "coalition_bonus": 0.0,
+        "cascade_penalty": 0.85,
+        "efficiency": 0.0,
+        "value": 0.08250000000000002
+      },
+      "n": 8
+    },
+    "t5": {
+      "policy": "naive_relay",
+      "task_id": "t5",
+      "score_mean": 0.44100000000000006,
+      "score_std": 0.05832666628567077,
+      "cascade_mean": 0.85,
+      "cascade_frac_above_0_5": 1.0,
+      "breakdown_mean": {
+        "truth_alignment": 0.949375,
+        "calibration": 0.94375,
+        "adversary_detection": 0.0,
+        "coalition_bonus": 0.0,
+        "cascade_penalty": 0.85,
+        "efficiency": 0.0,
+        "value": 0.44100000000000006
+      },
+      "n": 8
+    }
+  }
+}
