@@ -107,7 +107,11 @@ class WhispersEnv:
             info["tool_info"] = tool_info
             info["tool_error"] = None
         except ToolError as exc:
-            log.warning("ToolError: %s", exc)
+            # Keep this at INFO: malformed-action errors are an *expected*
+            # part of training (the agent gets penalised via shaping below
+            # and the error is surfaced via info["tool_error"]). Emitting
+            # at WARNING level spams Colab/CI logs during long GRPO runs.
+            log.info("ToolError: %s", exc)
             info["tool_info"] = {}
             info["tool_error"] = str(exc)
             # Treat illegal actions as `wait` so the simulation still advances,
