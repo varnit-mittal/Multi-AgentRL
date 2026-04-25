@@ -18,12 +18,51 @@ top of `README.md` to provision the Space.
 
 ## 2. Push the code
 
-Spaces are git repos. Add HF as a remote and push:
+> **Do NOT `git clone` the new empty Space inside this repo.** The Space and
+> this repo are two different git histories — you push *this* repo *to* the
+> Space, you do not clone the Space *into* this one. Cloning into the project
+> folder will collide with the existing `whispers/` directory (`fatal:
+> destination path 'whispers' already exists ...`).
+
+From the **root of this existing repo** (`Multi-AgentRL/`):
 
 ```bash
-# Once, in the project root
-git remote add space https://huggingface.co/spaces/<your-user>/whispers
-git lfs install            # only needed if you commit large files (we don't)
+# 1. Make sure everything is committed locally
+git status
+git add -A && git commit -m "Whispers OpenEnv environment"
+
+# 2. Add the HF Space as a SECOND git remote (call it `space`)
+git remote add space https://huggingface.co/spaces/<your-user>/<space-name>
+
+# 3. Push. HF will prompt for credentials (see auth note below).
+git push space main
+```
+
+If your branch isn't `main` (e.g. it's `master`), use `git push space master:main`.
+
+### Authenticating the push
+
+When prompted:
+
+- **Username**: your HF username
+- **Password**: an HF **write-access token** from
+  https://huggingface.co/settings/tokens — *not* your HF login password
+
+To cache it for the session: `git config --global credential.helper store`,
+then `git push space main` once.
+
+### If you get "destination path 'whispers' already exists"
+
+You ran `git clone https://huggingface.co/spaces/<your-user>/<space-name>`
+inside this repo. That tried to put the empty Space's contents into a new
+folder, which conflicts with the existing `whispers/` package directory.
+Fix:
+
+```bash
+# Remove any partial clone and use the remote-add workflow above instead
+rm -rf <space-name>      # only if a stray dir was created
+git remote -v            # check whether `space` is already added
+git remote add space https://huggingface.co/spaces/<your-user>/<space-name>
 git push space main
 ```
 

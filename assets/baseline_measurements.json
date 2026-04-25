@@ -76,7 +76,7 @@
       "policy": "random",
       "task_id": "t5",
       "score_mean": 0.5776041666666667,
-      "score_std": 0.2386920533435604,
+      "score_std": 0.23869205334356042,
       "cascade_mean": 0.0,
       "cascade_frac_above_0_5": 0.0,
       "breakdown_mean": {
