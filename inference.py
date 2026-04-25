@@ -38,6 +38,24 @@ from typing import Optional
 
 from openai import OpenAI
 
+# Optional: auto-load a local `.env` (next to this file or in cwd) so the
+# user doesn't have to `export` every variable. We import lazily and
+# silently skip if `python-dotenv` isn't installed.
+try:
+    from dotenv import load_dotenv
+
+    # Search order: explicit DOTENV_PATH > ./.env > <repo_root>/.env
+    _explicit = os.getenv("DOTENV_PATH")
+    if _explicit and os.path.isfile(_explicit):
+        load_dotenv(_explicit, override=False)
+    else:
+        load_dotenv(override=False)  # picks up ./.env if present
+        _here_env = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".env")
+        if os.path.isfile(_here_env):
+            load_dotenv(_here_env, override=False)
+except ImportError:
+    pass
+
 from whispers.env import WhispersEnv
 from whispers.client import WhispersClient
 from whispers.models import WhispersAction, WhispersObservation
