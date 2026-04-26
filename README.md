@@ -266,3 +266,8 @@ The **A6000 script** is the production trainer: it uses a **dense multi-componen
         ├── coalition_under_pressure.py
         └── calibrated_brief.py
 ```
+
+## Additional Links:
+
+- [Youtube](https://youtu.be/z7ePTRiB3LE)
+- [Our Playground](https://whispers-mauve.vercel.app/)
