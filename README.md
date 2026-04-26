@@ -248,19 +248,3 @@ The **A6000 script** is the production trainer: it uses a **dense multi-componen
         ├── coalition_under_pressure.py
         └── calibrated_brief.py
 ```
-
----
-
-## Citation
-If you use Whispers, please cite:
-
-```
-@software{whispers2026,
-  title  = {Whispers: A Multi-Agent Information-Triage Environment for LLM RL},
-  author = {Whispers Team},
-  year   = {2026},
-  url    = {https://huggingface.co/spaces/<your-user>/whispers}
-}
-```
-
-Background reading: Baker et al. *Rational quantitative attribution of beliefs, desires and percepts* (2017); KAIROS — *LLMs Can't Handle Peer Pressure* (2025); MARS / MARSHAL — *Reinforcing Multi-Agent Reasoning of LLMs through Self-Play* (2025); Decrypto (2025); LCFG — *LLM Coalition Formation Game* (2024).
