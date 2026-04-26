@@ -271,3 +271,5 @@ The **A6000 script** is the production trainer: it uses a **dense multi-componen
 
 - [Youtube](https://youtu.be/z7ePTRiB3LE)
 - [Our Playground](https://whispers-mauve.vercel.app/)
+- [Our training notebook](https://www.kaggle.com/code/varn03/notebookf1225ae4c4)
+- [HuggingFace](https://huggingface.co/spaces/varn03/whispers)
