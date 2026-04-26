@@ -1,3 +1,21 @@
+---
+title: Whispers
+emoji: 📡
+colorFrom: blue
+colorTo: purple
+sdk: docker
+app_port: 7860
+pinned: false
+license: apache-2.0
+tags:
+  - openenv
+  - multi-agent
+  - reinforcement-learning
+  - theory-of-mind
+  - misinformation
+  - llm
+---
+
 # Whispers — Multi-Agent Information Triage for LLMs
 
 > **Theme**: Multi-Agent Interactions (cooperation, competition, negotiation, coalition formation)
