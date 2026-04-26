@@ -156,7 +156,7 @@ Emits the exact OpenEnv hackathon log format:
 
 ### Baseline scores (real measurements via `scripts/make_plots.py`)
 
-The numbers below are **measured**, not illustrative — they're the output of running four deterministic policies through the env across 8 seeds each and averaging the per-task `value`. The full per-task / per-policy table is committed in [`assets/baseline_measurements.json`](assets/baseline_measurements.json).
+The numbers below are **measured**, these are the output of running four deterministic policies through the env across 8 seeds each and averaging the per-task `value`. The full per-task / per-policy table is committed in [`assets/baseline_measurements.json`](assets/baseline_measurements.json).
 
 | Task | Difficulty | random | wait | naive_editor | naive_relay | trained (target) |
 |---|---|---|---|---|---|---|
