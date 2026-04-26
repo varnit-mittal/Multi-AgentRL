@@ -110,7 +110,7 @@ Per-step intermediate signals (returned in `reward.value` after each `step`, wei
 
 ### Run locally (Docker)
 ```bash
-git clone https://huggingface.co/spaces/<your-user>/whispers
+git clone https://huggingface.co/spaces/varn03/whispers
 cd whispers
 docker build -t whispers .
 docker run --rm -p 7860:7860 whispers
