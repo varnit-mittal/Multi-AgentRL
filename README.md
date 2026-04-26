@@ -195,12 +195,27 @@ The interesting baselines are:
 
 ## Training (Unsloth + TRL GRPO)
 
-Open [`notebooks/train_whispers_grpo.ipynb`](notebooks/train_whispers_grpo.ipynb) in **free Colab T4**. The notebook:
+Three entry points, pick the one that matches your hardware:
 
-1. Spins up the `WhispersEnv` in-process (no HTTP overhead in the hot loop).
-2. Loads `Qwen/Qwen2.5-1.5B-Instruct` in 4-bit via `unsloth.FastLanguageModel`, applies LoRA (r=16).
-3. Drives `trl.GRPOTrainer` with a custom rollout that calls `env.step()` for up to `max_steps` and uses the per-episode normalised `reward.value` as the GRPO reward.
-4. Logs to WandB; saves curves to `assets/`.
+| Hardware | Entry point | Model |
+|---|---|---|
+| Free Colab T4 | [`notebooks/train_whispers_grpo.ipynb`](notebooks/train_whispers_grpo.ipynb) | Qwen2.5-1.5B-Instruct |
+| Free Kaggle 1×T4 | [`notebooks/train_whispers_grpo_kaggle_t4.ipynb`](notebooks/train_whispers_grpo_kaggle_t4.ipynb) | Qwen2.5-1.5B-Instruct |
+| **Workstation RTX A6000 (48 GB)** | [`scripts/train_grpo_a6000.py`](scripts/train_grpo_a6000.py) | **Qwen2.5-3B-Instruct** |
+
+All three:
+
+1. Spin up `WhispersEnv` in-process (no HTTP overhead in the hot loop).
+2. Load Qwen in 4-bit via `unsloth.FastLanguageModel`, apply LoRA.
+3. Drive `trl.GRPOTrainer` with a rollout that calls `env.step()` for up to `max_steps`.
+4. Log to WandB; save curves to `assets/`.
+
+The **A6000 script** is the production trainer: it uses a **dense multi-component reward** (format + tool-legality + neighbour-validity + per-step shaping + 1.5× terminal score, max ≈ 2.25) and a **three-stage curriculum** (t1 → t1+t2 → full mix). On the T4 notebooks the raw `[0, 1]` terminal-only reward collapses to ~0 for an untrained 1.5B policy and produces zero GRPO advantages — that's why the A6000 path moves to a 3B base model and a denser signal. Run it with::
+
+    python scripts/train_grpo_a6000.py
+    # or override knobs via env vars:
+    WHISPERS_MODEL=Qwen/Qwen2.5-7B-Instruct GRPO_STEPS=1000 \
+        python scripts/train_grpo_a6000.py
 
 **Phase 2 (stretch)** — hybrid self-play with **MARS-style turn-level advantage** + **agent-specific advantage normalisation**, freezing adversaries to scripted lies.
 
